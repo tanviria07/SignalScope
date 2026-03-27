@@ -27,10 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body className="min-h-screen font-sans">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-16 pt-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 pb-16 pt-6 sm:px-6 lg:px-10">
           <Nav />
           <main className="flex-1">{children}</main>
-          <footer className="mt-12 border-t border-surface-border pt-6 text-xs text-ink-faint">
+          <footer className="mt-12 border-t border-surface-border pt-6 text-xs leading-5 text-ink-faint">
             SignalScope — local analysis; data stays on your machine unless you configure otherwise.
           </footer>
         </div>

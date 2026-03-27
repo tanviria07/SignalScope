@@ -14,10 +14,10 @@ export default async function HistoryPage() {
   const items = await load();
 
   return (
-    <div className="space-y-6">
+    <div className="page-shell">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-ink">History</h1>
-        <p className="mt-2 text-sm text-ink-muted">
+        <h1 className="page-title">History</h1>
+        <p className="page-subtitle">
           Analyses are stored locally by the API (SQLite). Reopen any run to inspect charts and tables.
         </p>
       </div>
@@ -31,9 +31,12 @@ export default async function HistoryPage() {
           to create one.
         </div>
       ) : (
-        <ul className="divide-y divide-surface-border rounded-lg border border-surface-border bg-white">
+        <ul className="divide-y divide-surface-border rounded-xl border border-surface-border bg-surface-panel">
           {items.map((h) => (
-            <li key={h.analysis_id} className="flex flex-col gap-2 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <li
+              key={h.analysis_id}
+              className="flex flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+            >
               <div>
                 <Link href={`/analysis/${h.analysis_id}`} className="font-medium text-ink">
                   {h.filename}

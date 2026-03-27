@@ -10,19 +10,26 @@ const config: Config = {
       },
       colors: {
         surface: {
-          DEFAULT: "#fafaf9",
-          muted: "#f5f5f4",
-          border: "#e7e5e4",
+          DEFAULT: "#f7f8fa",
+          panel: "#ffffff",
+          muted: "#f2f4f7",
+          subtle: "#eef1f5",
+          border: "#e3e7ee",
+          strong: "#cfd7e3",
         },
         ink: {
-          DEFAULT: "#1c1917",
-          muted: "#57534e",
-          faint: "#78716c",
+          DEFAULT: "#111827",
+          soft: "#1f2937",
+          muted: "#4b5563",
+          faint: "#6b7280",
         },
         accent: {
-          DEFAULT: "#0d9488",
+          DEFAULT: "#0f766e",
           dim: "#115e59",
         },
+      },
+      boxShadow: {
+        panel: "0 1px 2px rgba(16,24,40,0.06), 0 1px 1px rgba(16,24,40,0.04)",
       },
     },
   },

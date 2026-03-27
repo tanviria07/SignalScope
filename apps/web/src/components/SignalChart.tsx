@@ -64,25 +64,36 @@ export function SignalChart({ analysis, height = 420 }: Props) {
     }
 
     const lay: Partial<Layout> = {
-      margin: { l: 48, r: 16, t: 28, b: 48 },
-      paper_bgcolor: "#fafaf9",
+      margin: { l: 56, r: 20, t: 36, b: 52 },
+      paper_bgcolor: "#ffffff",
       plot_bgcolor: "#ffffff",
-      font: { family: "var(--font-geist-sans), ui-sans-serif, system-ui", color: "#44403c" },
+      font: { family: "var(--font-geist-sans), ui-sans-serif, system-ui", color: "#374151", size: 12 },
       xaxis: {
         title: "Time",
         showgrid: true,
-        gridcolor: "#e7e5e4",
+        gridcolor: "#eef1f5",
+        linecolor: "#d8dee8",
+        mirror: true,
         zeroline: false,
       },
       yaxis: {
         title: "Value",
         showgrid: true,
-        gridcolor: "#e7e5e4",
+        gridcolor: "#eef1f5",
+        linecolor: "#d8dee8",
+        mirror: true,
         zeroline: false,
       },
       hovermode: "x unified",
       showlegend: true,
-      legend: { orientation: "h", y: 1.12, x: 0 },
+      legend: {
+        orientation: "h",
+        y: 1.14,
+        x: 0,
+        bgcolor: "rgba(255,255,255,0.85)",
+        bordercolor: "#e3e7ee",
+        borderwidth: 1,
+      },
       shapes,
       height,
     };
@@ -91,7 +102,7 @@ export function SignalChart({ analysis, height = 420 }: Props) {
   }, [analysis, height]);
 
   return (
-    <div className="w-full overflow-hidden rounded-lg border border-surface-border bg-white">
+    <div className="w-full overflow-hidden rounded-xl border border-surface-border bg-surface-panel shadow-panel">
       <Plot
         data={data}
         layout={layout}

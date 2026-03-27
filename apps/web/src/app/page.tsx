@@ -14,28 +14,22 @@ export default async function DashboardPage() {
   const history = await loadHistory();
 
   return (
-    <div className="space-y-10">
-      <section className="rounded-xl border border-surface-border bg-white p-8 shadow-sm">
-        <p className="text-xs font-medium uppercase tracking-wide text-ink-faint">SignalScope</p>
-        <h1 className="mt-2 max-w-2xl text-3xl font-semibold tracking-tight text-ink">
+    <div className="page-shell">
+      <section className="panel p-8">
+        <p className="kicker">SignalScope Dashboard</p>
+        <h1 className="mt-2 max-w-3xl text-3xl font-semibold">
           Inspect time-series behavior with segmentation, anomaly detection, and signal-quality insights.
         </h1>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted">
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-ink-muted">
           Upload CSV telemetry, metrics, or research traces. Configure fixed windows, review per-segment
           engineering metrics, and scan for outliers with transparent heuristics designed for developer
           workflows.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/upload"
-            className="inline-flex items-center rounded-md bg-ink px-4 py-2 text-sm font-medium text-white no-underline hover:bg-stone-800"
-          >
+          <Link href="/upload" className="btn-primary">
             Upload CSV
           </Link>
-          <Link
-            href="/history"
-            className="inline-flex items-center rounded-md border border-surface-border bg-surface-muted px-4 py-2 text-sm font-medium text-ink no-underline hover:bg-stone-200"
-          >
+          <Link href="/history" className="btn-secondary">
             View history
           </Link>
         </div>
@@ -53,9 +47,12 @@ export default async function DashboardPage() {
             No saved runs yet. Start with an upload — the API persists analyses locally in SQLite.
           </div>
         ) : (
-          <ul className="divide-y divide-surface-border rounded-lg border border-surface-border bg-white">
+          <ul className="divide-y divide-surface-border rounded-xl border border-surface-border bg-surface-panel">
             {history.map((h) => (
-              <li key={h.analysis_id} className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+              <li
+                key={h.analysis_id}
+                className="flex flex-col gap-1 px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between"
+              >
                 <div>
                   <Link href={`/analysis/${h.analysis_id}`} className="font-medium text-ink">
                     {h.filename}

@@ -59,28 +59,28 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-10">
+    <div className="mx-auto max-w-3xl space-y-8">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-ink">Upload</h1>
-        <p className="mt-2 text-sm text-ink-muted">
+        <h1 className="page-title">Upload</h1>
+        <p className="page-subtitle">
           CSV with <span className="font-mono">timestamp</span> and <span className="font-mono">value</span>{" "}
           columns (optional: <span className="font-mono">series_id</span>,{" "}
           <span className="font-mono">label</span>). Headers are matched case-insensitively.
         </p>
       </div>
 
-      <form onSubmit={onUpload} className="space-y-4 rounded-lg border border-surface-border bg-white p-6">
+      <form onSubmit={onUpload} className="panel space-y-4">
         <label className="block text-sm font-medium text-ink">File</label>
         <input
           type="file"
           accept=".csv,text/csv"
-          className="block w-full text-sm text-ink-muted file:mr-4 file:rounded-md file:border file:border-surface-border file:bg-surface-muted file:px-3 file:py-2 file:text-sm file:font-medium file:text-ink"
+          className="block w-full text-sm text-ink-muted file:mr-4 file:rounded-lg file:border file:border-surface-border file:bg-surface-muted file:px-3 file:py-2 file:text-sm file:font-medium file:text-ink"
           onChange={(ev) => setFile(ev.target.files?.[0] ?? null)}
         />
         <button
           type="submit"
           disabled={!file || busy}
-          className="rounded-md bg-ink px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+          className="btn-primary"
         >
           {busy && !uploadId ? "Validating…" : "Validate & stage upload"}
         </button>
@@ -94,13 +94,13 @@ export default function UploadPage() {
 
       {sampleText && (
         <div className="prose-sample">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-ink-faint">Accepted format</p>
+          <p className="kicker mb-2">Accepted format</p>
           <pre className="whitespace-pre-wrap">{sampleText.replace(/```csv|```/g, "").trim()}</pre>
         </div>
       )}
 
       {uploadId && (
-        <form onSubmit={onAnalyze} className="space-y-4 rounded-lg border border-surface-border bg-white p-6">
+        <form onSubmit={onAnalyze} className="panel space-y-4">
           <h2 className="text-sm font-semibold text-ink">Analysis options</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block text-sm text-ink-muted">
@@ -108,7 +108,7 @@ export default function UploadPage() {
               <input
                 type="number"
                 min={2}
-                className="mt-1 w-full rounded-md border border-surface-border px-3 py-2 font-mono text-sm"
+                className="input font-mono"
                 value={windowSize}
                 onChange={(e) => setWindowSize(Number(e.target.value))}
               />
@@ -124,7 +124,7 @@ export default function UploadPage() {
             <label className="block text-sm text-ink-muted">
               Anomaly method
               <select
-                className="mt-1 w-full rounded-md border border-surface-border px-3 py-2 text-sm"
+                className="input"
                 value={method}
                 onChange={(e) => setMethod(e.target.value as "zscore" | "rolling")}
               >
@@ -137,7 +137,7 @@ export default function UploadPage() {
               <input
                 type="number"
                 step="0.1"
-                className="mt-1 w-full rounded-md border border-surface-border px-3 py-2 font-mono text-sm"
+                className="input font-mono"
                 value={zThreshold}
                 onChange={(e) => setZThreshold(Number(e.target.value))}
               />
@@ -147,17 +147,13 @@ export default function UploadPage() {
               <input
                 type="number"
                 min={3}
-                className="mt-1 w-full rounded-md border border-surface-border px-3 py-2 font-mono text-sm"
+                className="input font-mono"
                 value={rollingWindow}
                 onChange={(e) => setRollingWindow(Number(e.target.value))}
               />
             </label>
           </div>
-          <button
-            type="submit"
-            disabled={busy}
-            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
-          >
+          <button type="submit" disabled={busy} className="btn-primary">
             {busy ? "Running…" : "Run analysis"}
           </button>
         </form>

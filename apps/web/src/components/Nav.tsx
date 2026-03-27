@@ -9,16 +9,20 @@ const links = [
 
 export function Nav() {
   return (
-    <header className="mb-10 flex flex-col gap-4 border-b border-surface-border pb-6 sm:flex-row sm:items-center sm:justify-between">
+    <header className="mb-10 flex flex-col gap-5 border-b border-surface-border pb-6 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <Link href="/" className="text-lg font-semibold tracking-tight text-ink no-underline">
+        <Link href="/" className="text-xl font-semibold tracking-tight text-ink no-underline">
           SignalScope
         </Link>
-        <p className="text-sm text-ink-muted">Time-series inspection for engineers</p>
+        <p className="mt-1 text-sm text-ink-muted">Internal signal analytics workspace</p>
       </div>
-      <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-muted">
+      <nav className="flex flex-wrap gap-2 text-sm text-ink-muted">
         {links.map((l) => (
-          <Link key={l.href} href={l.href} className="no-underline hover:text-ink">
+          <Link
+            key={l.href}
+            href={l.href}
+            className="rounded-md px-3 py-1.5 no-underline transition hover:bg-surface-subtle hover:text-ink"
+          >
             {l.label}
           </Link>
         ))}

@@ -15,12 +15,12 @@ export default async function AnalysisDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="page-shell">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-mono text-ink-faint">{data.analysis_id}</p>
-          <h1 className="text-2xl font-semibold tracking-tight text-ink">{data.filename}</h1>
-          <p className="text-sm text-ink-muted">
+          <p className="kicker font-mono normal-case tracking-normal">{data.analysis_id}</p>
+          <h1 className="page-title">{data.filename}</h1>
+          <p className="mt-1 text-sm text-ink-muted">
             {new Date(data.created_at).toLocaleString()} · {data.points.length} points ·{" "}
             {data.anomaly_count} anomalies
           </p>
@@ -34,7 +34,7 @@ export default async function AnalysisDetailPage({ params }: Props) {
       </div>
 
       <section>
-        <h2 className="mb-3 text-sm font-semibold text-ink">Signal</h2>
+        <h2 className="mb-3 text-sm font-semibold">Signal</h2>
         <p className="mb-3 text-xs text-ink-muted">
           Drag to pan; scroll or toolbar to zoom. Teal dotted lines mark segment starts when segmentation is
           on. Red markers highlight detected anomalies.
@@ -43,7 +43,7 @@ export default async function AnalysisDetailPage({ params }: Props) {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-lg border border-surface-border bg-white p-4">
+        <div className="panel">
           <h3 className="text-sm font-semibold text-ink">Global metrics</h3>
           <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             <Metric label="Mean" value={data.global_metrics.mean.toFixed(4)} />
@@ -56,7 +56,7 @@ export default async function AnalysisDetailPage({ params }: Props) {
             <Metric label="Drift" value={data.global_metrics.drift_score.toFixed(4)} />
           </dl>
         </div>
-        <div className="rounded-lg border border-surface-border bg-white p-4">
+        <div className="panel">
           <h3 className="text-sm font-semibold text-ink">Configuration</h3>
           <ul className="mt-3 space-y-1 text-sm text-ink-muted">
             <li>Window size: {data.config.window_size}</li>
@@ -69,12 +69,12 @@ export default async function AnalysisDetailPage({ params }: Props) {
       </section>
 
       <section>
-        <h2 className="mb-3 text-sm font-semibold text-ink">Insights</h2>
+        <h2 className="mb-3 text-sm font-semibold">Insights</h2>
         <ul className="space-y-2">
           {data.insights.map((i, idx) => (
             <li
               key={idx}
-              className="rounded-md border border-surface-border bg-surface-muted/40 px-3 py-2 text-sm text-ink-muted"
+              className="rounded-lg border border-surface-border bg-surface-muted/55 px-3.5 py-2.5 text-sm text-ink-muted"
             >
               <span className="mr-2 font-mono text-xs uppercase text-ink-faint">{i.severity}</span>
               {i.text}
@@ -84,13 +84,13 @@ export default async function AnalysisDetailPage({ params }: Props) {
       </section>
 
       <section>
-        <h2 className="mb-3 text-sm font-semibold text-ink">Anomalies</h2>
+        <h2 className="mb-3 text-sm font-semibold">Anomalies</h2>
         {data.anomalies.length === 0 ? (
           <p className="text-sm text-ink-muted">None detected under current settings.</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-surface-border bg-white">
+          <div className="table-shell">
             <table className="min-w-full text-left text-sm">
-              <thead className="border-b border-surface-border bg-surface-muted/50 text-xs uppercase text-ink-faint">
+              <thead className="border-b border-surface-border bg-surface-muted/60 text-xs uppercase text-ink-faint">
                 <tr>
                   <th className="px-3 py-2">Timestamp</th>
                   <th className="px-3 py-2">Value</th>
@@ -114,13 +114,13 @@ export default async function AnalysisDetailPage({ params }: Props) {
       </section>
 
       <section>
-        <h2 className="mb-3 text-sm font-semibold text-ink">Segment comparison</h2>
+        <h2 className="mb-3 text-sm font-semibold">Segment comparison</h2>
         {data.segments.length === 0 ? (
           <p className="text-sm text-ink-muted">No segments (disabled or insufficient points).</p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-surface-border bg-white">
+          <div className="table-shell">
             <table className="min-w-full text-left text-sm">
-              <thead className="border-b border-surface-border bg-surface-muted/50 text-xs uppercase text-ink-faint">
+              <thead className="border-b border-surface-border bg-surface-muted/60 text-xs uppercase text-ink-faint">
                 <tr>
                   <th className="px-3 py-2">#</th>
                   <th className="px-3 py-2">Points</th>
