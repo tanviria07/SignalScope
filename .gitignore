@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Node
+node_modules/
+.next/
+out/
+
+# Data / local DB (keep sample CSVs tracked; ignore generated DB and uploads)
+data/.signalscope.db
+data/uploads/
+
+# IDE
+.idea/
+.vscode/

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-surface text-ink antialiased;
+}
+
+a {
+  @apply text-accent underline-offset-4 hover:underline;
+}
+
+.prose-sample pre {
+  @apply rounded-md border border-surface-border bg-white p-3 text-sm text-ink-muted;
+}

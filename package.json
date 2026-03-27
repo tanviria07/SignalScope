@@ -1,0 +1,5 @@
+{
+  "name": "signalscope-monorepo",
+  "private": true,
+  "workspaces": ["apps/web"]
+}
